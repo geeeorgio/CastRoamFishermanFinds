@@ -3,6 +3,7 @@ export const COLORS = {
   black: '#000000',
   yellow: '#FFC53C',
   red: '#FF383C',
+  gray: '#808080',
 
   main_background: '#003138',
   input_background: '#024C57',
@@ -18,4 +19,5 @@ export const COLORS = {
   secondary_green_container: '#217243',
 
   dark_overlay: 'rgba(0, 0, 0, 0.4)',
+  modal_container: 'rgba(242, 242, 242, 0.8)',
 };
