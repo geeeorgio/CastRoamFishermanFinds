@@ -38,9 +38,9 @@ export const OnboardingContextProvider = ({
     init();
   }, []);
 
-  const setIsContextOnboardingDone = useCallback((value: boolean) => {
+  const setIsContextOnboardingDone = useCallback(async (value: boolean) => {
     setIsOnboardingDone(value);
-    setItemInStorage('is_onboarding_completed', value);
+    await setItemInStorage('is_onboarding_completed', value);
   }, []);
 
   const value = useMemo(
