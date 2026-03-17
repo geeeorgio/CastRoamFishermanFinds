@@ -5,7 +5,7 @@ import type { PLACE_INFO_TYPE } from './gameplay';
 export type MainStackParamList = {
   RandomPlaceScreen: undefined;
   PickPlaceScreen: undefined;
-  MapScreen: { place: PLACE_INFO_TYPE };
+  MapScreen: { place?: PLACE_INFO_TYPE } | undefined;
   LearnScreen: undefined;
   GameSetupScreen: undefined;
 };

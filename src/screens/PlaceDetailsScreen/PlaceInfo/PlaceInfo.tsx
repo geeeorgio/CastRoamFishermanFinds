@@ -20,7 +20,7 @@ const PlaceInfo = ({ place, handleShowOnMapPress }: PlaceInfoProps) => {
       contentContainerStyle={styles.contentContainer}
     >
       <View style={styles.imageContainer}>
-        <Image source={place?.image} style={styles.image} resizeMode="cover" />
+        <Image source={place.image} style={styles.image} resizeMode="cover" />
       </View>
 
       <CustomButton
@@ -36,10 +36,10 @@ const PlaceInfo = ({ place, handleShowOnMapPress }: PlaceInfoProps) => {
           colorVariant="darkGreen"
           style={styles.countryContainer}
         >
-          <CustomText style={styles.country}>{place?.country}</CustomText>
+          <CustomText style={styles.country}>{place.country}</CustomText>
         </CustomContainer>
-        <CustomText style={styles.title}>{place?.title}</CustomText>
-        <CustomText style={styles.description}>{place?.description}</CustomText>
+        <CustomText style={styles.title}>{place.title}</CustomText>
+        <CustomText style={styles.description}>{place.description}</CustomText>
       </View>
 
       <CustomContainer colorVariant="lightGreen" style={styles.factContainer}>
@@ -50,7 +50,7 @@ const PlaceInfo = ({ place, handleShowOnMapPress }: PlaceInfoProps) => {
             resizeMode="contain"
           />
         </View>
-        <CustomText style={styles.factTitle}>{place?.fact}</CustomText>
+        <CustomText style={styles.factTitle}>{place.fact}</CustomText>
       </CustomContainer>
     </ScrollView>
   );

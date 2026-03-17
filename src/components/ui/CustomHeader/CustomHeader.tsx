@@ -22,8 +22,8 @@ const CustomHeader = ({ options, route }: BottomTabHeaderProps) => {
   const [showSettings, setShowSettings] = useState(false);
 
   const toggleShowSettingsModal = useCallback(() => {
-    setShowSettings(!showSettings);
-  }, [showSettings]);
+    setShowSettings((prev) => !prev);
+  }, []);
 
   const handleNavigateToPickPlaceScreen = useCallback(() => {
     setShowSettings(false);

@@ -26,9 +26,11 @@ const PlaceDetailsScreen = () => {
   const { top, bottom } = useSafeAreaInsets();
 
   const handleBackPress = useCallback(() => {
-    navigation.navigate('MainStack', {
-      screen: 'RandomPlaceScreen',
-    });
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    } else {
+      navigation.navigate('MainStack', { screen: 'RandomPlaceScreen' });
+    }
   }, [navigation]);
 
   const handleShowOnMapPress = useCallback(
@@ -42,7 +44,7 @@ const PlaceDetailsScreen = () => {
   );
 
   return (
-    <View style={[styles.container, { paddingBottom: bottom + hp(40) }]}>
+    <View style={[styles.container, { paddingBottom: bottom + hp(50) }]}>
       <DetailsHeader paddingTop={top + hp(10)} onBackPress={handleBackPress} />
 
       {place && (
