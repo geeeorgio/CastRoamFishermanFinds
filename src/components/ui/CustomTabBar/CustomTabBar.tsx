@@ -1,6 +1,7 @@
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { PlatformPressable } from '@react-navigation/elements';
 import { useLinkBuilder } from '@react-navigation/native';
+import type { ViewStyle } from 'react-native';
 
 import CustomContainer from '../CustomContainer/CustomContainer';
 import { TAB_BAR_ICONS_MAP } from '../CustomIcons/iconsMap';
@@ -18,8 +19,15 @@ const CustomTabBar = ({
 }: BottomTabBarProps) => {
   const { buildHref } = useLinkBuilder();
 
+  const focusedOptions = descriptors[state.routes[state.index].key].options;
+  const tabBarStyle = focusedOptions.tabBarStyle as ViewStyle | undefined;
+
+  if (tabBarStyle?.display === 'none') {
+    return null;
+  }
+
   return (
-    <CustomContainer colorVariant="tabBar" style={styles.container}>
+    <CustomContainer colorVariant="darkGreen" style={styles.container}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const isFocused = state.index === index;

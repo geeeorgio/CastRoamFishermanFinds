@@ -14,4 +14,7 @@ export const styles = StyleSheet.create({
   lightBlue: {
     backgroundColor: COLORS.light_blue_container,
   },
+  green: {
+    backgroundColor: COLORS.green_container,
+  },
 });

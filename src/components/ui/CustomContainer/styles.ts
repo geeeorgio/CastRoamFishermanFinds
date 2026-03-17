@@ -21,8 +21,6 @@ export const styles = StyleSheet.create({
   darkGreen: {
     backgroundColor: COLORS.green_container,
     borderRadius: wp(12),
-    borderWidth: wp(1),
-    borderColor: COLORS.light_blue_container,
   },
   modal: {
     backgroundColor: COLORS.modal_container,

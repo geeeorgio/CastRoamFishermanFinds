@@ -1,5 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import { CustomHeader, CustomTabBar } from 'src/components';
 import {
   GameSetupScreen,
   LearnScreen,
@@ -15,23 +16,40 @@ const MainNavigator = () => {
   return (
     <MainStack.Navigator
       screenOptions={{
-        headerShown: false,
+        header: (props) => <CustomHeader {...props} />,
         animation: 'shift',
         sceneStyle: {
           backgroundColor: 'transparent',
         },
       }}
-      // tabBar={(props) => <CustomTabBar {...props} />}
+      tabBar={(props) => <CustomTabBar {...props} />}
       initialRouteName="RandomPlaceScreen"
     >
       <MainStack.Screen
         name="RandomPlaceScreen"
         component={RandomPlaceScreen}
+        options={{ title: 'Today’s Finds' }}
       />
-      <MainStack.Screen name="PickPlaceScreen" component={PickPlaceScreen} />
-      <MainStack.Screen name="MapScreen" component={MapScreen} />
-      <MainStack.Screen name="LearnScreen" component={LearnScreen} />
-      <MainStack.Screen name="GameSetupScreen" component={GameSetupScreen} />
+      <MainStack.Screen
+        name="PickPlaceScreen"
+        component={PickPlaceScreen}
+        options={{ title: 'Pick a vibe' }}
+      />
+      <MainStack.Screen
+        name="MapScreen"
+        component={MapScreen}
+        options={{ title: 'Map' }}
+      />
+      <MainStack.Screen
+        name="LearnScreen"
+        component={LearnScreen}
+        options={{ title: 'Roam & Learn' }}
+      />
+      <MainStack.Screen
+        name="GameSetupScreen"
+        component={GameSetupScreen}
+        options={{ title: 'Raccoon Catch Rush' }}
+      />
     </MainStack.Navigator>
   );
 };

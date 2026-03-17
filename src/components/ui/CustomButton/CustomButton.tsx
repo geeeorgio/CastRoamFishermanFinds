@@ -4,7 +4,7 @@ import { Pressable } from 'react-native';
 import { styles } from './styles';
 
 interface CustomButtonProps extends PressableProps {
-  variant?: 'default' | 'blue' | 'lightBlue';
+  variant?: 'default' | 'blue' | 'lightBlue' | 'green';
 }
 
 const CustomButton = ({

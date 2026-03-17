@@ -15,6 +15,8 @@ import SearchIcon from './SearchIcon';
 import SettingsIcon from './SettingsIcon';
 import ShareIcon from './ShareIcon';
 
+import type { MainStackParamList } from 'src/types';
+
 export const ICON_NAMES = [
   'arrDown',
   'arrLeft',
@@ -49,4 +51,15 @@ export const ICONS_MAP: Record<IconName, React.FC<SvgProps>> = {
   share: ShareIcon,
   search: SearchIcon,
   settings: SettingsIcon,
+};
+
+export const TAB_BAR_ICONS_MAP: Record<
+  keyof MainStackParamList,
+  React.FC<SvgProps>
+> = {
+  RandomPlaceScreen: FishIcon,
+  PickPlaceScreen: RandomIcon,
+  MapScreen: MapIcon,
+  LearnScreen: FishHookIcon,
+  GameSetupScreen: CatchIcon,
 };
