@@ -1,91 +1,120 @@
-import { memo, useRef, useState } from 'react';
-import { Image, View } from 'react-native';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { Image, ImageBackground, View, StyleSheet } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-
-import CustomButton from '../CustomButton/CustomButton';
 
 import { styles } from './styles';
 
+import { CustomButton, CustomText } from 'src/components';
 import { ITEMS_IMAGES, PLACES_LIST } from 'src/constants';
 import type { PLACE_INFO_TYPE } from 'src/types';
-import { shuffleArray } from 'src/utils';
+import { shuffleArray, wp } from 'src/utils';
 
-interface MapComponentProps {
+interface Props {
   place?: PLACE_INFO_TYPE;
   onMapPress?: () => void;
-  onDetailPress?: (placeId: string) => void;
+  onDetailPress?: (id: string) => void;
 }
 
-const CARD_SIZE = 60;
+const MapComponent = memo(({ place, onMapPress, onDetailPress }: Props) => {
+  const mapRef = useRef<MapView>(null);
 
-const MapComponent = memo(
-  ({ place, onMapPress, onDetailPress }: MapComponentProps) => {
-    const [initialPlace] = useState<PLACE_INFO_TYPE>(
-      () => shuffleArray(PLACES_LIST)[0],
+  const [initialPlace] = useState(() => shuffleArray([...PLACES_LIST])[0]);
+
+  const [lastActivePlace, setLastActivePlace] = useState<PLACE_INFO_TYPE>(
+    place ?? initialPlace,
+  );
+  const [cardPos, setCardPos] = useState<{ x: number; y: number } | null>(null);
+
+  useEffect(() => {
+    if (place) {
+      setLastActivePlace(place);
+    }
+  }, [place]);
+
+  const updatePos = useCallback(async () => {
+    if (!mapRef.current) return;
+    const point = await mapRef.current.pointForCoordinate(
+      lastActivePlace.coordinates,
     );
-    const currentPlace = place ?? initialPlace;
+    setCardPos(point);
+  }, [lastActivePlace]);
 
-    const mapRef = useRef<MapView>(null);
-    const [cardPos, setCardPos] = useState<{ x: number; y: number } | null>(
-      null,
-    );
-
-    const updateCardPosition = async () => {
-      if (!mapRef.current) return;
-      const point = await mapRef.current.pointForCoordinate(
-        currentPlace.coordinates,
+  useEffect(() => {
+    if (place) {
+      mapRef.current?.animateToRegion(
+        {
+          ...place.coordinates,
+          latitudeDelta: 0.02,
+          longitudeDelta: 0.02,
+        },
+        600,
       );
-      setCardPos(point);
-    };
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [place?.id]);
 
-    return (
-      <View style={styles.container}>
-        <MapView
-          ref={mapRef}
-          provider={PROVIDER_GOOGLE}
-          toolbarEnabled={false}
-          region={{
-            ...currentPlace.coordinates,
-            latitudeDelta: 0.02,
-            longitudeDelta: 0.02,
-          }}
-          onMapReady={updateCardPosition}
-          onRegionChange={updateCardPosition}
-          onPress={(e) => {
-            if (e.nativeEvent.action !== 'marker-press') {
-              onMapPress?.();
-            }
-          }}
-          style={styles.map}
-        />
+  return (
+    <View style={{ flex: 1 }}>
+      <MapView
+        ref={mapRef}
+        provider={PROVIDER_GOOGLE}
+        style={StyleSheet.absoluteFill}
+        onRegionChange={updatePos}
+        onRegionChangeComplete={updatePos}
+        onMapReady={updatePos}
+        onPress={onMapPress}
+        initialRegion={{
+          ...(place?.coordinates ?? initialPlace.coordinates),
+          latitudeDelta: 0.02,
+          longitudeDelta: 0.02,
+        }}
+      />
 
-        {cardPos && (
-          <CustomButton
-            variant="default"
-            onPress={() => onDetailPress?.(currentPlace.id)}
-            style={[
-              styles.card,
-              {
-                left: cardPos.x - CARD_SIZE / 2,
-                top: cardPos.y - CARD_SIZE - 10,
-              },
-            ]}
-          >
-            <Image
-              source={currentPlace.image}
-              style={styles.cardImage}
-              resizeMode="cover"
-            />
-            <Image
-              source={ITEMS_IMAGES.float}
-              style={styles.floatImage}
-              resizeMode="contain"
-            />
-          </CustomButton>
-        )}
-      </View>
-    );
-  },
-);
+      {cardPos && (
+        <View
+          pointerEvents="box-none"
+          style={[
+            styles.overlay,
+            {
+              left: cardPos.x - (place ? wp(65) : wp(30)),
+              top: cardPos.y - (place ? wp(145) : wp(75)),
+            },
+          ]}
+        >
+          {place ? (
+            <ImageBackground
+              source={lastActivePlace.image}
+              style={styles.activeCard}
+              imageStyle={{ borderRadius: wp(16) }}
+            >
+              <Image source={ITEMS_IMAGES.float} style={styles.floatActive} />
+              <View style={styles.activeOverlay}>
+                <CustomText numberOfLines={1} style={styles.activeTitle}>
+                  {lastActivePlace.title}
+                </CustomText>
+                <CustomButton
+                  variant="green"
+                  style={styles.btn}
+                  onPress={() => onDetailPress?.(lastActivePlace.id)}
+                >
+                  <CustomText style={styles.btnText}>Explore</CustomText>
+                </CustomButton>
+              </View>
+            </ImageBackground>
+          ) : (
+            <CustomButton
+              variant="default"
+              onPress={() => onDetailPress?.(lastActivePlace.id)}
+              style={styles.standardCard}
+            >
+              <Image source={lastActivePlace.image} style={styles.img} />
+              <Image source={ITEMS_IMAGES.float} style={styles.floatStandard} />
+            </CustomButton>
+          )}
+        </View>
+      )}
+    </View>
+  );
+});
 
 export default MapComponent;
