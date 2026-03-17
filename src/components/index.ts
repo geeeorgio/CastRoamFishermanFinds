@@ -5,6 +5,7 @@ import CustomHeader from './ui/CustomHeader/CustomHeader';
 import CustomIcon from './ui/CustomIcons/CustomIcon';
 import CustomTabBar from './ui/CustomTabBar/CustomTabBar';
 import CustomText from './ui/CustomText/CustomText';
+import MapComponent from './ui/MapComponent/MapComponent';
 
 export {
   GameBackground,
@@ -14,4 +15,5 @@ export {
   CustomIcon,
   CustomText,
   CustomTabBar,
+  MapComponent,
 };
