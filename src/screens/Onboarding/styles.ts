@@ -4,6 +4,9 @@ import { COLORS, FONTS } from 'src/constants';
 import { hp, sp, wp } from 'src/utils';
 
 export const styles = StyleSheet.create({
+  bkgd: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     width: '100%',

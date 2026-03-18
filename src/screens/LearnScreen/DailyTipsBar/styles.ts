@@ -47,7 +47,11 @@ export const styles = StyleSheet.create({
     fontFamily: FONTS.Regular,
   },
   textNotAvailable: {
-    color: COLORS.blue_text,
+    fontFamily: FONTS.SemiBold,
+    color: COLORS.green_text,
+    textShadowColor: COLORS.black,
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 1,
   },
   btnsContainer: {
     width: '100%',

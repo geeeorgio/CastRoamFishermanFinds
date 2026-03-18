@@ -1,6 +1,7 @@
 import { ITEMS_IMAGES, ONBD_IMAGES } from './images';
 
 import type { GAME_OBSTACLE_TYPE } from 'src/types';
+import { wp } from 'src/utils';
 
 export const ONBOARDING_INFO = {
   onboarding_1: {
@@ -54,3 +55,12 @@ export const GAME_OBSTACLE_INFO: GAME_OBSTACLE_TYPE[] = [
     image: ITEMS_IMAGES.single_fish,
   },
 ];
+
+export const GAME_TIME = 10000;
+export const GAME_LIVES = 3;
+export const GAME_STEP = wp(40);
+export const GAME_TIMER_INTERVAL = 100;
+export const RACCOON_SIZE = wp(80);
+export const OBSTACLE_SIZE = RACCOON_SIZE / 1.5;
+export const MIN_X = 0;
+export const MIN_Y = 0;

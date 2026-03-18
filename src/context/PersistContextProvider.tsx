@@ -6,7 +6,6 @@ import {
   useMemo,
   useState,
 } from 'react';
-import type { ImageSourcePropType } from 'react-native';
 
 import type { Daily_Tip_Type, PersistContextType } from 'src/types';
 import { getItemFromStorage, setItemInStorage } from 'src/utils';
@@ -16,15 +15,15 @@ export const PersistContext = createContext<PersistContextType | null>(null);
 const PersistContextProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [lastTipTime, setLastTipTime] = useState<number>(0);
-  const [bckgd, setBckgd] = useState<ImageSourcePropType | null>(null);
   const [tip, setTip] = useState<Daily_Tip_Type | null>(null);
+  const [topScore, setTopScore] = useState<number>(0);
 
   useEffect(() => {
     const init = async () => {
-      const [savedTimestamp, savedBckgd, savedTip] = await Promise.all([
+      const [savedTimestamp, savedTip, savedTopScore] = await Promise.all([
         getItemFromStorage<number>('saved_timestamp'),
-        getItemFromStorage<ImageSourcePropType>('saved_bckgd'),
         getItemFromStorage<Daily_Tip_Type>('saved_tip'),
+        getItemFromStorage<number>('saved_top_score'),
       ]);
 
       if (savedTimestamp !== null) {
@@ -35,8 +34,8 @@ const PersistContextProvider = ({ children }: { children: ReactNode }) => {
         setTip(savedTip);
       }
 
-      if (savedBckgd) {
-        setBckgd(savedBckgd);
+      if (savedTopScore !== null) {
+        setTopScore(Math.max(0, savedTopScore));
       }
 
       setIsLoading(false);
@@ -49,38 +48,35 @@ const PersistContextProvider = ({ children }: { children: ReactNode }) => {
     await setItemInStorage('saved_timestamp', timestamp);
   }, []);
 
-  const setPersistedContextBackground = useCallback(
-    async (value: ImageSourcePropType | null) => {
-      setBckgd(value);
-      await setItemInStorage('saved_bckgd', value);
-    },
-    [],
-  );
-
   const setPersistedTip = useCallback(async (value: Daily_Tip_Type | null) => {
     setTip(value);
     await setItemInStorage('saved_tip', value);
   }, []);
 
+  const setPersistedTopScore = useCallback(async (value: number) => {
+    setTopScore(value);
+    await setItemInStorage('saved_top_score', value);
+  }, []);
+
   const value = useMemo(
     () => ({
       isPersistContextLoading: isLoading,
+      persistedTopScore: topScore,
+      setPersistedTopScore,
       persistedTipsTimestamp: lastTipTime,
       setPersistedTipsTimestamp,
       canGetNewTip: Date.now() - lastTipTime > 24 * 60 * 60 * 1000,
       persistedTip: tip,
       setPersistedTip,
-      contextBackground: bckgd,
-      setPersistedContextBackground,
     }),
     [
       isLoading,
       lastTipTime,
       setPersistedTipsTimestamp,
-      bckgd,
-      setPersistedContextBackground,
       tip,
       setPersistedTip,
+      topScore,
+      setPersistedTopScore,
     ],
   );
 

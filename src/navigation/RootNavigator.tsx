@@ -4,6 +4,7 @@ import MainNavigator from './MainNavigator';
 import OnboardingNavigator from './OnboardingNavigator';
 
 import { useOnboardingContext } from 'src/hooks/useOnboardingContext';
+import { usePersistContext } from 'src/hooks/usePersistContext';
 import { GameplayScreen, PlaceDetailsScreen } from 'src/screens';
 import type { RootStackParamList } from 'src/types';
 
@@ -11,8 +12,9 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const RootNavigator = () => {
   const { isContextOnboardingDone, isContextLoading } = useOnboardingContext();
+  const { isPersistContextLoading } = usePersistContext();
 
-  if (isContextLoading) {
+  if (isContextLoading || isPersistContextLoading) {
     return null;
   }
 

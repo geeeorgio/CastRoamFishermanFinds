@@ -3,7 +3,7 @@ export const COLORS = {
   black: '#000000',
   yellow: '#FFC53C',
   red: '#FF383C',
-  gray: '#808080',
+  gray: 'rgba(100, 100, 100, 0.2)',
 
   main_background: '#003138',
   input_background: '#024C57',
@@ -19,7 +19,7 @@ export const COLORS = {
   secondary_green_container: '#217243',
 
   dark_overlay: 'rgba(0, 0, 0, 0.4)',
-  dark_overlay_2: 'rgba(100, 100, 100, 0.7)',
+  dark_overlay_2: 'rgba(100, 100, 100, 0.9)',
   modal_container: 'rgba(242, 242, 242, 0.8)',
   progress_bar_inactive: 'rgba(255, 255, 255, 0.6)',
 };
