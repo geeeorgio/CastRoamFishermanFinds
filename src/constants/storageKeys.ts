@@ -1,6 +1,7 @@
 export const STORAGE_KEYS = [
   'is_onboarding_completed',
-  'saved_tips',
+  'saved_timestamp',
+  'saved_tip',
   'saved_bckgd',
 ] as const;
 

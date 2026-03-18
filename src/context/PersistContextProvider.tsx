@@ -8,7 +8,7 @@ import {
 } from 'react';
 import type { ImageSourcePropType } from 'react-native';
 
-import type { PersistContextType } from 'src/types';
+import type { Daily_Tip_Type, PersistContextType } from 'src/types';
 import { getItemFromStorage, setItemInStorage } from 'src/utils';
 
 export const PersistContext = createContext<PersistContextType | null>(null);
@@ -17,16 +17,22 @@ const PersistContextProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [lastTipTime, setLastTipTime] = useState<number>(0);
   const [bckgd, setBckgd] = useState<ImageSourcePropType | null>(null);
+  const [tip, setTip] = useState<Daily_Tip_Type | null>(null);
 
   useEffect(() => {
     const init = async () => {
-      const [savedTips, savedBckgd] = await Promise.all([
-        getItemFromStorage<string>('saved_tips'),
+      const [savedTimestamp, savedBckgd, savedTip] = await Promise.all([
+        getItemFromStorage<number>('saved_timestamp'),
         getItemFromStorage<ImageSourcePropType>('saved_bckgd'),
+        getItemFromStorage<Daily_Tip_Type>('saved_tip'),
       ]);
 
-      if (savedTips !== null) {
-        setLastTipTime(Number(savedTips));
+      if (savedTimestamp !== null) {
+        setLastTipTime(Number(savedTimestamp));
+      }
+
+      if (savedTip !== null) {
+        setTip(savedTip);
       }
 
       if (savedBckgd) {
@@ -38,9 +44,9 @@ const PersistContextProvider = ({ children }: { children: ReactNode }) => {
     init();
   }, []);
 
-  const setPersistedTipsTimestamp = useCallback(async (timestamp: string) => {
-    setLastTipTime(Number(timestamp));
-    await setItemInStorage('saved_tips', timestamp);
+  const setPersistedTipsTimestamp = useCallback(async (timestamp: number) => {
+    setLastTipTime(timestamp);
+    await setItemInStorage('saved_timestamp', timestamp);
   }, []);
 
   const setPersistedContextBackground = useCallback(
@@ -51,12 +57,19 @@ const PersistContextProvider = ({ children }: { children: ReactNode }) => {
     [],
   );
 
+  const setPersistedTip = useCallback(async (value: Daily_Tip_Type | null) => {
+    setTip(value);
+    await setItemInStorage('saved_tip', value);
+  }, []);
+
   const value = useMemo(
     () => ({
       isPersistContextLoading: isLoading,
-      persistedTipsTimestamp: lastTipTime.toString(),
+      persistedTipsTimestamp: lastTipTime,
       setPersistedTipsTimestamp,
       canGetNewTip: Date.now() - lastTipTime > 24 * 60 * 60 * 1000,
+      persistedTip: tip,
+      setPersistedTip,
       contextBackground: bckgd,
       setPersistedContextBackground,
     }),
@@ -66,6 +79,8 @@ const PersistContextProvider = ({ children }: { children: ReactNode }) => {
       setPersistedTipsTimestamp,
       bckgd,
       setPersistedContextBackground,
+      tip,
+      setPersistedTip,
     ],
   );
 

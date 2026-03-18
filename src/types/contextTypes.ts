@@ -1,11 +1,16 @@
 import type { ImageSourcePropType } from 'react-native';
 
+import type { Daily_Tip_Type } from './gameplay';
+
 export type PersistContextType = {
   isPersistContextLoading: boolean;
   //
-  persistedTipsTimestamp: string;
-  setPersistedTipsTimestamp: (value: string) => Promise<void>;
+  persistedTipsTimestamp: number;
+  setPersistedTipsTimestamp: (value: number) => Promise<void>;
+  //
   canGetNewTip: boolean;
+  persistedTip: Daily_Tip_Type | null;
+  setPersistedTip: (value: Daily_Tip_Type | null) => Promise<void>;
   //
   contextBackground: ImageSourcePropType | null;
   setPersistedContextBackground: (
