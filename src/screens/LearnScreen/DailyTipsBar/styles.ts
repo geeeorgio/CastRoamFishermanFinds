@@ -6,7 +6,7 @@ import { hp, sp, wp } from 'src/utils';
 export const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: hp(125),
+    height: hp(130),
     marginTop: hp(16),
   },
   mainContent: {
@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     gap: wp(10),
   },
   textImgContainer: {
-    width: wp(60),
+    width: wp(66),
     aspectRatio: 1,
   },
   textImg: {
@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   textTitle: {
-    fontSize: sp(16),
+    fontSize: sp(14),
     fontFamily: FONTS.SemiBold,
   },
   textDescription: {
@@ -47,7 +47,6 @@ export const styles = StyleSheet.create({
     fontFamily: FONTS.Regular,
   },
   textNotAvailable: {
-    fontFamily: FONTS.SemiBold,
     color: COLORS.green_text,
     textShadowColor: COLORS.black,
     textShadowOffset: { width: 1, height: 1 },
@@ -64,10 +63,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLORS.yellow,
     borderRadius: wp(12),
-    paddingVertical: hp(8),
   },
   tipBtnText: {
-    fontSize: sp(14),
+    fontSize: sp(12),
     color: COLORS.black,
     textAlign: 'center',
   },

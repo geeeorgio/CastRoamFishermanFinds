@@ -1,4 +1,4 @@
-import { StackActions, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, Dimensions, ImageBackground, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -27,7 +27,7 @@ import { hp, shuffleArray, wp } from 'src/utils';
 
 const { width, height } = Dimensions.get('window');
 const MAX_X = width - RACCOON_SIZE - wp(5);
-const MAX_Y = height - hp(320);
+const MAX_Y = height - hp(330);
 
 const getRandomPosition = (maxX: number, maxY: number) => {
   const randomX = Math.floor(Math.random() * (maxX / GAME_STEP)) * GAME_STEP;
@@ -95,16 +95,23 @@ const GameplayScreen = () => {
   }, [setGameSettings]);
 
   const handleExitPress = useCallback(() => {
-    navigation.dispatch(
-      StackActions.replace('MainStack', { screen: 'RandomPlaceScreen' }),
-    );
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'MainStack', params: { screen: 'RandomPlaceScreen' } }],
+    });
   }, [navigation]);
 
   const raccoonPos = useRef({ x: 0, y: 0 });
   const raccoonPosition = useRef(new Animated.ValueXY({ x: 0, y: 0 })).current;
+  const isProcessingCollision = useRef(false);
+  const isMoving = useRef(false);
 
   const checkCollision = useCallback(
     (newRaccoonPos: { x: number; y: number }) => {
+      isMoving.current = false;
+
+      if (isProcessingCollision.current) return;
+
       const dx =
         newRaccoonPos.x +
         RACCOON_SIZE / 2 -
@@ -116,11 +123,14 @@ const GameplayScreen = () => {
       const distance = Math.sqrt(dx * dx + dy * dy);
 
       if (distance < GAME_STEP) {
+        isProcessingCollision.current = true;
+
         setGameSettings((prev) => ({
           ...prev,
           score: prev.score + 1,
           obstacle: shuffleArray(GAME_OBSTACLE_INFO)[0],
         }));
+
         setObstaclePosition(getRandomPosition(MAX_X, MAX_Y));
       }
     },
@@ -129,7 +139,7 @@ const GameplayScreen = () => {
 
   const moveRaccoon = useCallback(
     (dx: number, dy: number) => {
-      if (gameSettings.status !== 'playing') return;
+      if (gameSettings.status !== 'playing' || isMoving.current) return;
 
       let newX = raccoonPos.current.x + dx;
       let newY = raccoonPos.current.y + dy;
@@ -139,16 +149,35 @@ const GameplayScreen = () => {
       if (newY < MIN_Y) newY = MIN_Y;
       if (newY > MAX_Y) newY = MAX_Y;
 
+      isMoving.current = true;
       raccoonPos.current = { x: newX, y: newY };
 
       Animated.timing(raccoonPosition, {
         toValue: { x: newX, y: newY },
         duration: 100,
         useNativeDriver: true,
-      }).start(() => checkCollision({ x: newX, y: newY }));
+      }).start(({ finished }) => {
+        if (finished) {
+          checkCollision({ x: newX, y: newY });
+        }
+      });
     },
     [gameSettings.status, raccoonPosition, checkCollision],
   );
+
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+
+    if (isProcessingCollision.current) {
+      timer = setTimeout(() => {
+        isProcessingCollision.current = false;
+      }, 150);
+    }
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [obstaclePosition]);
 
   const handleRestartPress = useCallback(() => {
     setGameSettings(initGameSettings());
@@ -184,7 +213,7 @@ const GameplayScreen = () => {
     >
       <View style={[styles.container, { paddingBottom: bottom + hp(50) }]}>
         <GameHeader
-          paddingTop={top}
+          paddingTop={top + hp(10)}
           lives={gameSettings.lives}
           onPausePress={handlePausePress}
         />

@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: wp(6),
   },
   description: {
-    fontSize: hp(15),
+    fontSize: hp(14),
     textAlign: 'center',
   },
   button: {
@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
-    fontSize: hp(16),
+    fontSize: hp(14),
     color: COLORS.blue_text,
   },
 });

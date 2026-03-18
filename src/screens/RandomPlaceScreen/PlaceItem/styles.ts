@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
   },
   imageContainer: {
     width: '100%',
-    height: '80%',
+    height: '78%',
     borderRadius: wp(12),
     overflow: 'hidden',
   },
@@ -41,10 +41,10 @@ export const styles = StyleSheet.create({
   },
   titleContainer: {
     width: '100%',
-    height: '18%',
+    height: '20%',
   },
   title: {
-    fontSize: sp(14),
+    fontSize: sp(12),
     color: COLORS.black,
   },
 });

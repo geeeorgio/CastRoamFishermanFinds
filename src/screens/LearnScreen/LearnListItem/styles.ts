@@ -39,14 +39,14 @@ export const styles = StyleSheet.create({
     paddingHorizontal: wp(4),
   },
   title: {
-    fontSize: sp(16),
+    fontSize: sp(14),
     fontFamily: FONTS.SemiBold,
   },
   description: {
-    fontSize: sp(14),
+    fontSize: sp(12),
   },
   tip: {
-    fontSize: sp(12),
+    fontSize: sp(11),
     color: COLORS.yellow,
     fontWeight: 'bold',
     fontStyle: 'italic',

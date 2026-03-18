@@ -4,16 +4,16 @@ import { hp, wp } from 'src/utils';
 
 export const styles = StyleSheet.create({
   container: {
-    width: '45%',
+    width: '55%',
     position: 'absolute',
     alignSelf: 'center',
     alignItems: 'center',
-    gap: hp(4),
+    gap: hp(6),
     zIndex: 10,
   },
   topBottomBtn: {
-    width: wp(40),
-    height: wp(40),
+    width: wp(50),
+    height: hp(50),
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -24,8 +24,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   leftRightBtn: {
-    width: wp(40),
-    height: wp(40),
+    width: wp(50),
+    height: hp(50),
     justifyContent: 'center',
     alignItems: 'center',
   },
