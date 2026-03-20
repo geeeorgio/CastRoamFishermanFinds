@@ -45,6 +45,6 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: sp(12),
-    color: COLORS.black,
+    color: COLORS.input_text,
   },
 });

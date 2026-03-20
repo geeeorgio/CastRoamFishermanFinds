@@ -14,8 +14,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   obstacleImage: {
-    width: '80%',
-    height: '80%',
+    width: '85%',
+    height: '85%',
   },
   raccoonContainer: {
     width: RACCOON_SIZE,

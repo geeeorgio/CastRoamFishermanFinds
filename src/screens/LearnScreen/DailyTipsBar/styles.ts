@@ -47,7 +47,7 @@ export const styles = StyleSheet.create({
     fontFamily: FONTS.Regular,
   },
   textNotAvailable: {
-    color: COLORS.green_text,
+    color: COLORS.yellow,
     textShadowColor: COLORS.black,
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 1,
@@ -61,12 +61,12 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: COLORS.yellow,
+    backgroundColor: COLORS.light_blue_container,
     borderRadius: wp(12),
   },
   tipBtnText: {
     fontSize: sp(12),
-    color: COLORS.black,
+    // color: COLORS.black,
     textAlign: 'center',
   },
   shareBtn: {

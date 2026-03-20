@@ -9,6 +9,6 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    backgroundColor: COLORS.dark_overlay,
+    backgroundColor: COLORS.black_overlay,
   },
 });

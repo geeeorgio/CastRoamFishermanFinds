@@ -13,6 +13,8 @@ export const styles = StyleSheet.create({
   },
   lightBlue: {
     backgroundColor: COLORS.light_blue_container,
+    borderWidth: wp(1),
+    borderColor: COLORS.gray,
   },
   green: {
     backgroundColor: COLORS.green_container,

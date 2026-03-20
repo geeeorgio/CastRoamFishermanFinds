@@ -1,21 +1,21 @@
-export const MAIN_BACKGROUND = require('src/assets/images/bckgd/bckgd.png');
+export const MAIN_BACKGROUND = require('src/assets/images/bckgd/penguin_bckgd.png');
 
 export const BAR_FRAME = require('src/assets/images/bckgd/orange_bar.png');
 
 export const PICK_VIBE_FRAME = require('src/assets/images/bckgd/pick_frame.png');
 
 export const ONBD_IMAGES = {
-  onbd1: require('src/assets/images/onbd/onbd_1.png'),
-  onbd2: require('src/assets/images/onbd/onbd_2.png'),
-  onbd3: require('src/assets/images/onbd/onbd_3.png'),
+  onbd1: require('src/assets/images/onbd/p_onbd1.png'),
+  onbd2: require('src/assets/images/onbd/p_onbd2.png'),
+  onbd3: require('src/assets/images/onbd/p_onbd3.png'),
 };
 
 export const ITEMS_IMAGES = {
   float: require('src/assets/images/items/float.png'),
   hook: require('src/assets/images/items/hook.png'),
-  multiple_fish: require('src/assets/images/items/miltiple_fish.png'),
-  single_fish: require('src/assets/images/items/single_fish.png'),
-  worm_hook: require('src/assets/images/items/worm_hook.png'),
+  multiple_fish: require('src/assets/images/items/golden_fish.png'),
+  single_fish: require('src/assets/images/items/blue_fish.png'),
+  worm_hook: require('src/assets/images/items/red_fish.png'),
 };
 
 export const PLACES_IMAGES = {

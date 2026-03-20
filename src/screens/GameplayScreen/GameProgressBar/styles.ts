@@ -8,12 +8,12 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '90%',
     height: hp(8),
-    backgroundColor: COLORS.green_container,
+    backgroundColor: COLORS.light_blue_container,
     borderRadius: wp(12),
   },
   filler: {
     height: '100%',
-    backgroundColor: COLORS.light_blue_container,
+    backgroundColor: COLORS.blue_text,
     borderRadius: wp(12),
   },
 });

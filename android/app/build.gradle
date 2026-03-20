@@ -79,7 +79,7 @@ android {
 
     namespace "com.castroamfishermanfinds"
     defaultConfig {
-        applicationId "com.castroamfishermanfinds"
+        applicationId "com.hookhorizonfishingspots"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: wp(16),
     paddingBottom: hp(40),
+    backgroundColor: COLORS.black_overlay,
   },
   skipButton: {
     alignSelf: 'flex-end',
@@ -41,7 +42,8 @@ export const styles = StyleSheet.create({
     gap: hp(16),
     paddingHorizontal: wp(16),
     paddingVertical: hp(20),
-    borderWidth: 0,
+    borderWidth: wp(1),
+    borderColor: COLORS.light_blue_container,
   },
   textContainer: {
     width: '100%',
@@ -85,6 +87,6 @@ export const styles = StyleSheet.create({
   },
   nextText: {
     fontSize: sp(16),
-    color: COLORS.blue_text,
+    // color: COLORS.blue_text,
   },
 });
