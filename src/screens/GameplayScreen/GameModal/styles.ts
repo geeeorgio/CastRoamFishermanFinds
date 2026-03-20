@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: wp(40),
-    backgroundColor: COLORS.dark_overlay,
+    backgroundColor: COLORS.dark_overlay_2,
   },
   mainContainer: {
     width: '100%',

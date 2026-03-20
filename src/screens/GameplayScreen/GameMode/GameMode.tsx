@@ -47,7 +47,7 @@ const GameMode = ({
         ]}
       >
         <Animated.Image
-          source={ONBD_IMAGES.onbd2}
+          source={ONBD_IMAGES.onbd1}
           style={styles.raccoonImage}
           resizeMode="contain"
         />

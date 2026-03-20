@@ -8,6 +8,8 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: hp(130),
     marginTop: hp(16),
+    overflow: 'hidden',
+    borderRadius: wp(16),
   },
   mainContent: {
     width: '100%',
@@ -17,6 +19,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: wp(12),
     paddingVertical: hp(10),
     gap: hp(10),
+    backgroundColor: COLORS.black_overlay,
   },
   textContainer: {
     width: '100%',

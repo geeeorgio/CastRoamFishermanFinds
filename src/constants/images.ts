@@ -1,13 +1,13 @@
-export const MAIN_BACKGROUND = require('src/assets/images/bckgd/penguin_bckgd.png');
+export const MAIN_BACKGROUND = require('src/assets/images/bckgd/bear_bckgd.png');
 
 export const BAR_FRAME = require('src/assets/images/bckgd/orange_bar.png');
 
 export const PICK_VIBE_FRAME = require('src/assets/images/bckgd/pick_frame.png');
 
 export const ONBD_IMAGES = {
-  onbd1: require('src/assets/images/onbd/p_onbd1.png'),
-  onbd2: require('src/assets/images/onbd/p_onbd2.png'),
-  onbd3: require('src/assets/images/onbd/p_onbd3.png'),
+  onbd1: require('src/assets/images/onbd/bear_onbd1.png'),
+  onbd2: require('src/assets/images/onbd/bear_onbd2.png'),
+  onbd3: require('src/assets/images/onbd/bear_onbd3.png'),
 };
 
 export const ITEMS_IMAGES = {

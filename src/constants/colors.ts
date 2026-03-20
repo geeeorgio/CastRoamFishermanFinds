@@ -1,26 +1,28 @@
 export const COLORS = {
   white: '#FFFFFF',
   black: '#000000',
-  yellow: '#FFD74B',
-  red: '#FF5C77',
-  gray: 'rgba(255, 255, 255, 0.2)',
+  yellow: '#FFC857',
+  red: '#DF5E5E',
+  gray: 'rgba(255, 255, 255, 0.4)',
 
-  main_background: '#014769',
-  input_background: 'rgba(255, 255, 255, 0.1)',
-  input_text: '#D4F0FF',
+  main_background: '#38575E',
+  input_background: 'rgba(255, 255, 255, 0.2)',
+  input_text: '#F0F9FF',
 
-  blue_text: '#76E5FF',
-  modal_blue_text: '#A0EFFF',
-  main_blue_container: 'rgba(15, 45, 75, 0.85)',
-  light_blue_container: 'rgba(118, 229, 255, 0.2)',
+  blue_text: '#AEEBFF',
+  modal_blue_text: '#FFFFFF',
 
-  green_text: '#52FFC8',
-  green_container: '#223147',
-  secondary_green_container: 'rgba(255, 240, 240, 0.1)',
+  main_blue_container: 'rgba(40, 85, 100, 0.9)',
+  light_blue_container: 'rgba(174, 235, 255, 0.3)',
 
-  black_overlay: 'rgba(0, 0, 0, 0.4)',
-  dark_overlay: 'rgba(7, 25, 40, 0.75)',
-  dark_overlay_2: 'rgba(10, 35, 55, 0.95)',
-  modal_container: 'rgba(222, 245, 255, 0.3)',
-  progress_bar_inactive: 'rgba(255, 255, 255, 0.15)',
+  green_text: '#8FFFB6',
+  green_container: 'rgba(100, 60, 10, 0.9)',
+  secondary_green_container: 'rgba(120, 100, 80, 0.4)',
+
+  black_overlay: 'rgba(30, 20, 10, 0.4)',
+  dark_overlay: 'rgba(45, 90, 88, 0.7)',
+  dark_overlay_2: 'rgba(25, 50, 50, 0.9)',
+
+  modal_container: 'rgba(255, 255, 255, 0.25)',
+  progress_bar_inactive: 'rgba(255, 255, 255, 0.25)',
 };

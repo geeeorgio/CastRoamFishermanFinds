@@ -48,7 +48,7 @@ const MainNavigator = () => {
       <MainStack.Screen
         name="GameSetupScreen"
         component={GameSetupScreen}
-        options={{ title: 'Penguin Catch Rush' }}
+        options={{ title: 'Bear Catch Rush' }}
       />
     </MainStack.Navigator>
   );

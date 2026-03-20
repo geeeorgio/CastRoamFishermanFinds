@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { COLORS } from 'src/constants';
+import { FONTS } from 'src/constants';
 import { hp, wp } from 'src/utils';
 
 export const styles = StyleSheet.create({
@@ -45,6 +45,6 @@ export const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: hp(14),
-    color: COLORS.blue_text,
+    fontFamily: FONTS.SemiBold,
   },
 });

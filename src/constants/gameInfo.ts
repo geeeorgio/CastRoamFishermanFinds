@@ -24,7 +24,7 @@ export const ONBOARDING_INFO = {
     index: 2,
     title: 'Map, Tips, and a Fun Break',
     description:
-      'See every spot on the map, read simple fishing tips and a daily funny tip from the penguin, then play a quick mini game anytime',
+      'See every spot on the map, read simple fishing tips and a daily funny tip from the bear, then play a quick mini game anytime',
     image: ONBD_IMAGES.onbd3,
     buttonText: 'Start Exploring',
   },
@@ -33,7 +33,7 @@ export const ONBOARDING_INFO = {
 export const GAME_SCREEN_INFO = {
   image: ONBD_IMAGES.onbd2,
   description:
-    'Catch it fast. Miss it… and you lose a life. Use the arrow buttons to move the penguin and catch the item before time runs out',
+    'Catch it fast. Miss it… and you lose a life. Use the arrow buttons to move the bear and catch the item before time runs out',
   buttonText: 'Start',
 };
 
